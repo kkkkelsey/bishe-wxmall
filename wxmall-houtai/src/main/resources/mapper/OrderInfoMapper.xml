@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.javaclimb.xshopping.mapper.OrderInfoMapper">
+    <select id="findByEndUserId" resultType="com.javaclimb.xshopping.model.OrderInfo">
+        select * from order_info where userId = #{userId}
+        <if test="status != null and status != ''">
+            and status = #{status}
+        </if>
+        order by id desc
+    </select>
+
+    <delete id="deleteById">
+        delete from order_info where id = #{id}
+    </delete>
+</mapper>

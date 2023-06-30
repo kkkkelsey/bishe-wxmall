@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.javaclimb.xshopping.mapper.GroupbuyMapper">
+  <resultMap id="BaseResultMap" type="com.javaclimb.xshopping.model.Groupbuy">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="goodsId" jdbcType="BIGINT" property="goodsid" />
+    <result column="userId" jdbcType="BIGINT" property="userid" />
+    <result column="goodsName" jdbcType="VARCHAR" property="goodsname" />
+    <result column="price" jdbcType="DOUBLE" property="price" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, goodsId, userId, goodsName, price
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from groupbuy
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from groupbuy
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.javaclimb.xshopping.model.Groupbuy" useGeneratedKeys="true">
+    insert into groupbuy (goodsId, userId, goodsName, 
+      price)
+    values (#{goodsid,jdbcType=BIGINT}, #{userid,jdbcType=BIGINT}, #{goodsname,jdbcType=VARCHAR}, 
+      #{price,jdbcType=DOUBLE})
+  </insert>
+  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.javaclimb.xshopping.model.Groupbuy" useGeneratedKeys="true">
+    insert into groupbuy
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="goodsid != null">
+        goodsId,
+      </if>
+      <if test="userid != null">
+        userId,
+      </if>
+      <if test="goodsname != null">
+        goodsName,
+      </if>
+      <if test="price != null">
+        price,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="goodsid != null">
+        #{goodsid,jdbcType=BIGINT},
+      </if>
+      <if test="userid != null">
+        #{userid,jdbcType=BIGINT},
+      </if>
+      <if test="goodsname != null">
+        #{goodsname,jdbcType=VARCHAR},
+      </if>
+      <if test="price != null">
+        #{price,jdbcType=DOUBLE},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.javaclimb.xshopping.model.Groupbuy">
+    update groupbuy
+    <set>
+      <if test="goodsid != null">
+        goodsId = #{goodsid,jdbcType=BIGINT},
+      </if>
+      <if test="userid != null">
+        userId = #{userid,jdbcType=BIGINT},
+      </if>
+      <if test="goodsname != null">
+        goodsName = #{goodsname,jdbcType=VARCHAR},
+      </if>
+      <if test="price != null">
+        price = #{price,jdbcType=DOUBLE},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.javaclimb.xshopping.model.Groupbuy">
+    update groupbuy
+    set goodsId = #{goodsid,jdbcType=BIGINT},
+      userId = #{userid,jdbcType=BIGINT},
+      goodsName = #{goodsname,jdbcType=VARCHAR},
+      price = #{price,jdbcType=DOUBLE}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

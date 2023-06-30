@@ -1,0 +1,8 @@
+<view class="login_title">修改收货地址</view>
+<view class="inputView">
+  <input class="input_text" value="{{newaddr}}" type="text" placeholder="请输入新地址" bindinput="onAddr"/>
+</view>
+
+<view class="loginBtnView">
+  <button class="loginBtn" type="primary" bindtap="reset">确定</button>
+</view>
